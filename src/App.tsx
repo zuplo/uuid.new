@@ -22,7 +22,7 @@ export default function UUIDGenerator() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-      <div className="fixed top-0 left-0 right-0 z-50 bg-gray-900/50 backdrop-blur-sm ">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gray-900/50 backdrop-blur-sm">
         <zuplo-banner mode="dark"></zuplo-banner>
       </div>
 
