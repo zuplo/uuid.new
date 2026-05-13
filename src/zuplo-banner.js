@@ -44,7 +44,7 @@ class ZuploBanner extends HTMLElement {
 
     const zuploLogoContainer = document.createElement("a");
     zuploLogoContainer.setAttribute("class", "zuplo-logo");
-    zuploLogoContainer.setAttribute("href", "https://zuplo.com");
+    zuploLogoContainer.setAttribute("href", "https://zuplo.com?utm_source=uuid-new&utm_campaign=opensource&utm_medium=web");
     zuploLogoContainer.setAttribute("target", "_blank");
     zuploLogoContainer.setAttribute("rel", "noopener noreferrer");
     zuploLogoContainer.setAttribute("aria-label", "Zuplo");

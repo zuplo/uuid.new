@@ -218,7 +218,7 @@ Content-Type: application/json`,
         <p className="text-[12px] text-[#6b7280] text-center mt-6">
           Powered by{" "}
           <a
-            href="https://zuplo.com"
+            href="https://zuplo.com?utm_source=uuid-new&utm_campaign=opensource&utm_medium=web"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#FF00BD] font-semibold hover:underline"
