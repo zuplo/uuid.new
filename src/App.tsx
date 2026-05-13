@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, Copy, Braces, Code } from "lucide-react";
+import { Check, Copy, BracketsCurly, Code, ArrowsClockwise } from "@phosphor-icons/react";
 import { useCallback, useMemo, useState } from "react";
 import {
   CustomSelect,
@@ -77,7 +77,6 @@ Content-Type: application/json`,
     http: "HTTP",
   };
 
-  // Map our language keys to Prism's language keys
   const prismLanguageMap = {
     curl: "bash",
     javascript: "javascript",
@@ -107,59 +106,72 @@ Content-Type: application/json`,
   }, [selectedLanguage, codeSnippets]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-      <div className="fixed top-0 left-0 right-0 z-50 bg-gray-900/50 backdrop-blur-sm">
-        <zuplo-banner mode="dark"></zuplo-banner>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f9fafb] text-[#111827] px-4 py-16">
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <zuplo-banner mode="light"></zuplo-banner>
       </div>
 
-      <div className="w-full max-w-md px-4">
+      <div className="w-full max-w-md">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">uuid.new</h1>
-          <Braces className="h-6 w-6 text-pink-500" />
+          <h1 className="text-[28px] font-semibold tracking-[-0.3px] leading-[1.2]">
+            uuid.new
+          </h1>
+          <BracketsCurly size={24} weight="regular" className="text-[#FF00BD]" />
         </div>
-        <div className="bg-gray-800 rounded-lg p-4 mb-4">
-          <div className="flex items-center justify-between">
-            <code className="font-mono text-sm text-gray-300">{uuid}</code>
+
+        <div className="bg-white border border-[#e5e7eb] rounded-xl p-5 mb-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9ca3af] mb-2">
+            Your UUID
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <code className="font-mono text-[14px] text-[#111827] break-all">
+              {uuid}
+            </code>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-gray-400 hover:text-pink-500"
+              className="shrink-0 h-9 w-9"
               onClick={copyUuid}
+              aria-label="Copy UUID"
             >
               {copied ? (
-                <Check className="h-4 w-4" />
+                <Check size={16} weight="regular" className="text-[#10b981]" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy size={16} weight="regular" />
               )}
-              <span className="sr-only">Copy UUID</span>
             </Button>
           </div>
         </div>
+
         <Button
           onClick={generateNewUuid}
-          className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white mb-6"
+          className="w-full mb-8"
           size="lg"
         >
-          Generate New UUID
+          <ArrowsClockwise size={16} weight="regular" />
+          Generate new UUID
         </Button>
-        <div className="bg-gray-800 rounded-lg p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center">
-              <Code className="h-4 w-4 mr-2 text-pink-500" />
-              <span className="text-sm font-semibold">API Examples</span>
+
+        <div className="bg-white border border-[#e5e7eb] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Code size={16} weight="regular" className="text-[#6b7280]" />
+              <h2 className="text-[15px] font-semibold text-[#111827]">
+                API examples
+              </h2>
             </div>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-gray-400 hover:text-pink-500"
+              className="h-9 w-9"
               onClick={copySnippet}
+              aria-label="Copy code snippet"
             >
               {snippetCopied ? (
-                <Check className="h-4 w-4" />
+                <Check size={16} weight="regular" className="text-[#10b981]" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy size={16} weight="regular" />
               )}
-              <span className="sr-only">Copy Code Snippet</span>
             </Button>
           </div>
 
@@ -170,7 +182,7 @@ Content-Type: application/json`,
                 setSelectedLanguage(value as keyof typeof prismLanguageMap)
               }
             >
-              <CustomSelectTrigger className="w-full bg-gray-700 border-gray-600">
+              <CustomSelectTrigger className="w-full">
                 <CustomSelectValue placeholder="Select language" />
               </CustomSelectTrigger>
               <CustomSelectContent>
@@ -183,22 +195,37 @@ Content-Type: application/json`,
             </CustomSelect>
           </div>
 
-          <div className="rounded overflow-hidden">
+          <div className="rounded-lg overflow-hidden border border-[#1e1e2e]">
             <SyntaxHighlighter
               language={prismLanguageMap[selectedLanguage]}
               style={vscDarkPlus}
               customStyle={{
                 margin: 0,
-                padding: "0.75rem",
-                borderRadius: "0.25rem",
-                fontSize: "0.875rem",
-                backgroundColor: "#1a1a1a",
+                padding: "14px 16px",
+                borderRadius: 0,
+                fontSize: "13px",
+                fontFamily:
+                  "'Fira Code', 'SF Mono', ui-monospace, monospace",
+                fontWeight: 400,
+                backgroundColor: "#1e1e2e",
               }}
             >
               {codeSnippets[selectedLanguage]}
             </SyntaxHighlighter>
           </div>
         </div>
+
+        <p className="text-[12px] text-[#6b7280] text-center mt-6">
+          Powered by{" "}
+          <a
+            href="https://zuplo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#FF00BD] font-semibold hover:underline"
+          >
+            Zuplo
+          </a>
+        </p>
       </div>
     </div>
   );
