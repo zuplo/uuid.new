@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, CaretDown } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 
@@ -19,14 +19,14 @@ const CustomSelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-12 w-full items-center justify-between rounded-lg border-0 bg-[#2d3748] px-4 py-2 text-base text-white shadow-sm ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
+      "flex h-9 w-full items-center justify-between rounded-lg border border-[#e5e7eb] bg-white px-3 text-[13px] font-medium text-[#111827] transition-[border-color,box-shadow] focus:outline-none focus:border-[#FF00BD] focus:ring-[3px] focus:ring-[var(--accent-ghost)] disabled:cursor-not-allowed disabled:opacity-50",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-5 w-5 opacity-70" />
+      <CaretDown size={14} weight="regular" className="text-[#6b7280]" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -40,7 +40,7 @@ const CustomSelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 min-w-[8rem] overflow-hidden rounded-lg border-0 bg-[#2d3748] text-white shadow-md animate-in fade-in-80",
+        "relative z-50 min-w-[8rem] overflow-hidden rounded-lg border border-[#e5e7eb] bg-white text-[#111827] shadow-[0_6px_24px_rgba(0,0,0,0.10)] animate-in fade-in-80",
         position === "popper" && "translate-y-1",
         className
       )}
@@ -49,7 +49,7 @@ const CustomSelectContent = React.forwardRef<
     >
       <SelectPrimitive.Viewport
         className={cn(
-          "p-1",
+          "p-1.5",
           position === "popper" &&
             "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}
@@ -68,7 +68,7 @@ const CustomSelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     className={cn(
-      "py-1.5 pl-8 pr-2 text-sm font-semibold text-white",
+      "px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9ca3af]",
       className
     )}
     {...props}
@@ -83,14 +83,14 @@ const CustomSelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full select-none items-center py-2 pl-10 pr-4 text-base text-white outline-none transition-colors data-[highlighted]:bg-[#374151] data-[highlighted]:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer",
+      "relative flex w-full select-none items-center gap-2 rounded-md py-2 pl-8 pr-3 text-[13px] text-[#374151] outline-none transition-colors data-[highlighted]:bg-[#f3f4f6] data-[highlighted]:text-[#111827] data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer",
       className
     )}
     {...props}
   >
-    <span className="absolute left-3 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2.5 flex h-4 w-4 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-5 w-5 text-white" />
+        <Check size={14} weight="regular" className="text-[#FF00BD]" />
       </SelectPrimitive.ItemIndicator>
     </span>
 
@@ -105,7 +105,7 @@ const CustomSelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-[#4a5568]", className)}
+    className={cn("-mx-1 my-1 h-px bg-[#e5e7eb]", className)}
     {...props}
   />
 ));
